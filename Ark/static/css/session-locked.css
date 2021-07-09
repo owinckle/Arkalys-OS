@@ -1,0 +1,47 @@
+.session-locked {
+	background: var(--secondary);
+	position: absolute;
+	overflow: hidden;
+	left: 0px;
+	top: 0px;
+	height: 100vh;
+	width: 100vw;
+}
+
+.session-locked .connect-modal {
+	display: flex;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: var(--primary);
+	height: 500px;
+	width: 500px;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-radius: 24px;
+	-webkit-box-shadow: 0px 10px 30px 10px rgb(0 0 0 / 30%); 
+	box-shadow: 0px 10px 30px 10px rgb(0 0 0 / 30%);
+}
+
+.session-locked .avatar {
+	height: 120px;
+	width: 120px;
+	object-fit: contain;
+	border: 3px solid var(--secondary);
+	border-radius: 50%;
+}
+
+.session-locked .session-name {
+	color: #fff;
+	font-size: 25px;
+}
+
+.session-locked input[type="password"] {
+	height: 20px;
+	width: 270px;
+	padding: 10px;
+	border-radius: 7px;
+	border: none;
+}
