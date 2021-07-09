@@ -6,4 +6,5 @@ from . import views
 
 urlpatterns = [
 	path("", views.ark, name="ark-os"),
+	url(r".*/$", views.ark)
 ]

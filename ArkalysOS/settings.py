@@ -25,7 +25,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Ark.apps.ArkConfig'
+    # Packages
+    'rest_framework',
+    # Frontend
+    'Ark',
+    # Modules
+    'UserSettings',
+    'Contacts',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,101 @@
+.card {
+	background-color: var(--fourth);
+	-webkit-box-shadow: 0 0 20px 5px rgb(0 0 0 / 30%);
+	box-shadow: 0 0 20px 5px rgb(0 0 0 / 30%);
+}
+
+.card .head {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 30px;
+	user-select: none;
+	align-items: center;
+}
+
+.card .title {
+	color: #fff;
+	font-size: 20px;
+}
+
+.card .table-headers {
+	padding: 16px 24px;
+	grid-column-gap: 0px;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: auto;
+	background-color: var(--secondary);
+	user-select: none;
+}
+
+.card .table-headers .caption {
+	color: var(--sub);
+}
+
+.card .table-row {
+	display: block;
+	max-width: 100%;
+	font-weight: 400;
+	background: transparent;
+	color: #fff;
+	font-size: 18px;
+}
+
+.card .table-row .label {
+	color: var(--sub);
+	font-size: 12px;
+	margin-bottom: 5px;
+	user-select: none;
+}
+
+.card .table-row .more {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.card .table-row .more .flex {
+	cursor: pointer;
+}
+
+.card .table-row .more .more-icon {
+	color: var(--sub);
+	cursor: pointer;
+}
+
+.card .content {
+	padding: 16px 24px;
+}
+
+.card .app-grid {
+	padding: 0px 30px 30px 30px;
+}
+
+.card .app-grid .app {
+	background-color: var(--secondary);
+	padding: 16px 24px;
+	display: flex;
+	justify-content: flex-start;
+	border-radius: 10px;
+	color: #fff;
+	align-items: center;
+	-webkit-box-shadow: 0 0 20px 5px rgb(0 0 0 / 30%);
+	box-shadow: 0 0 20px 5px rgb(0 0 0 / 30%);
+	cursor: pointer;
+}
+
+.card .app-grid .app .app-icon {
+	margin-right: 30px;
+	font-size: 55px;
+}
+
+.card .app-grid .app p {
+	margin: 0px;
+}
+
+.card .app-grid .app .app-name {
+	margin-bottom: 5px;
+	font-size: 18px;
+}
+
+.card .app-grid .app .app-description {
+	color: var(--sub);
+}

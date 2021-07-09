@@ -1,0 +1,8 @@
+.module {
+	position: absolute;
+	padding: 50px;
+	left: var(--sidebar-width);
+	top: var(--topbar-height);
+	height: calc(100vh - var(--topbar-height) - 100px);
+	width: calc(100vw - var(--sidebar-width) - 100px);
+}
