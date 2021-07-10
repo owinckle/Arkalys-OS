@@ -121,3 +121,7 @@ body {
 	background-position: 0px 0px;
 	color: var(--highlight);
 }
+
+.mt-10 {
+	margin-top: 10px;
+}

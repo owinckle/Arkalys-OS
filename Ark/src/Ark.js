@@ -88,17 +88,17 @@ export default class Ark extends Component {
 						<Topbar
 							title={ this.state.activeModule }
 						/>
-						<Route exact path="/" render={ (props) =>
+						<Route exact path="/dashboard/" render={ (props) =>
 							null}
 						/>
 
-						<Route exact path="/apps/" render={ (props) =>
+						<Route exact path="/dashboard/apps/" render={ (props) =>
 							<Apps
 								updateState={ this.updateState }
 							/>}
 						/>
 
-						<Route exact path="/contacts/" render={ (props) =>
+						<Route exact path="/dashboard/contacts/" render={ (props) =>
 							<Contacts
 								updateState={ this.updateState }
 							/>}

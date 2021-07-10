@@ -51,13 +51,15 @@ export default class Contacts extends Component {
 							<div className="value">{ d.name }</div>
 						</div>
 						<div>
-							<div className="label">Email address</div>
+							<div className="label">Home email</div>
 							<div className="value">{ d.emails.home }</div>
+							<div className="label mt-10">Work email</div>
 							<div className="value">{ d.emails.work }</div>
 						</div>
 						<div>
-							<div className="label">Phone number</div>
+							<div className="label">Home phone number</div>
 							<div className="value">{ d.phones.home }</div>
+							<div className="label mt-10">Work phone number</div>
 							<div className="value">{ d.phones.work }</div>
 						</div>
 						<div>

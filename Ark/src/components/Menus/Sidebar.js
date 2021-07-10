@@ -38,14 +38,14 @@ export default class Sidebar extends Component {
 					<img src="/static/img/logos/arkalys-logo.png" />
 				</div>
 				<div className="content">
-					<Link to="/" className={ class_home } onClick={ () => this.togglePage("home") }>
+					<Link to="/dashboard/" className={ class_home } onClick={ () => this.togglePage("home") }>
 						<span className="icon material-icons">home</span>
 					</Link>
-					<Link to="/apps/" className={ class_apps } onClick={ () => this.togglePage("apps") }>
+					<Link to="/dashboard/apps/" className={ class_apps } onClick={ () => this.togglePage("apps") }>
 						<span className="icon material-icons">apps</span>
 					</Link>
 					{ pins.contacts || active == "contacts" ?
-						<Link to="/contacts/" className={ class_contacts }
+						<Link to="/dashboard/contacts/" className={ class_contacts }
 							onClick={ () => this.togglePage("contacts") }
 							onContextMenu={ () => this.setContextMenu("contacts") }
 						>
