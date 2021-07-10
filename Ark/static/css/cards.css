@@ -45,6 +45,13 @@
 	background: transparent;
 	color: #fff;
 	font-size: 18px;
+	transition: box-shadow .2s ease;
+}
+
+.card .table-row.hover:hover {
+	cursor: pointer;
+	-webkit-box-shadow: 0 0 10px 0px rgb(0 0 0 / 30%);
+	box-shadow: 0 0 10px 0px rgb(0 0 0 / 30%);
 }
 
 .card .table-row .label {

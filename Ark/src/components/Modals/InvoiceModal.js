@@ -6,12 +6,28 @@ export default class InvoiceModal extends Component {
 		super(props);
 
 		this.state = {
-			items: []
+			items: [],
+			org_street: "",
+			org_city: "",
+			org_zip: "",
+			org_country: "",
+			client_name: "",
+			client_email: "",
+			client_street: "",
+			client_city: "",
+			client_zip: "",
+			client_country: "",
+			issued: "",
+			due: "",
+			description: ""
 		}
 
-		this.addItem	= this.addItem.bind(this);
-		this.deleteItem	= this.deleteItem.bind(this);
-		this.updateItem	= this.updateItem.bind(this);
+		this.addItem		= this.addItem.bind(this);
+		this.deleteItem		= this.deleteItem.bind(this);
+		this.updateItem		= this.updateItem.bind(this);
+		this.changeHandler	= this.changeHandler.bind(this);
+		this.discardInvoice	= this.discardInvoice.bind(this);
+		this.createInvoice	= this.createInvoice.bind(this);
 	}
 
 	addItem() {
@@ -48,6 +64,65 @@ export default class InvoiceModal extends Component {
 		this.setState({
 			items: items
 		});
+	}
+
+	changeHandler(e) {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	}
+
+	discardInvoice() {
+		this.props.updateState("newInvoice", false);
+		this.setState({
+			items: [],
+			org_street: "",
+			org_city: "",
+			org_zip: "",
+			org_country: "",
+			client_name: "",
+			client_email: "",
+			client_street: "",
+			client_city: "",
+			client_zip: "",
+			client_country: "",
+			issued: "",
+			due: "",
+			description: ""
+		});
+	}
+
+	createInvoice(type) {
+		const requestOptions = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"X-CSRFToken": getCookie('csrftoken')
+			},
+			body: JSON.stringify({
+				type: type,
+				items: this.state.items,
+				org_street: this.state.org_street,
+				org_city: this.state.org_city,
+				org_zip: this.state.org_zip,
+				org_country: this.state.org_country,
+				client_name: this.state.client_name,
+				client_email: this.state.client_email,
+				client_street: this.state.client_street,
+				client_city: this.state.client_city,
+				client_zip: this.state.client_zip,
+				client_country: this.state.client_country,
+				issued: this.state.issued,
+				due: this.state.due,
+				description:this.state.description
+			})
+		}
+
+		fetch("/api/invoicing/create", requestOptions)
+			.then((response) => {
+				this.discardInvoice();
+				this.props.reload();
+			});
 	}
 
 	render() {
@@ -106,30 +181,42 @@ export default class InvoiceModal extends Component {
 						<div className="mb-30">
 							<p className="label">Street address</p>
 							<input
+								name="org_street"
 								className="text-field"
 								type="text"
+								value={ this.state.org_street }
+								onChange={ this.changeHandler }
 							/>
 						</div>
 						<div className="flex">
 							<div className="mr-10">
 								<p className="label">City</p>
 								<input
+									name="org_city"
 									className="text-field"
 									type="text"
+									value={ this.state.org_city }
+									onChange={ this.changeHandler }
 								/>
 							</div>
 							<div className="mr-10">
 								<p className="label">Zip Code</p>
 								<input
+									name="org_zip"
 									className="text-field"
 									type="text"
+									value={ this.state.org_zip }
+									onChange={ this.changeHandler }
 								/>
 							</div>
 							<div>
 								<p className="label">Country</p>
 								<input
+									name="org_country"
 									className="text-field"
 									type="text"
+									value={ this.state.org_country }
+									onChange={ this.changeHandler }
 								/>
 							</div>
 						</div>
@@ -139,44 +226,62 @@ export default class InvoiceModal extends Component {
 							<div className="mb-30">
 								<p className="label">Name</p>
 								<input
+									name="client_name"
 									className="text-field"
 									type="text"
+									value={ this.state.client_name }
+									onChange={ this.changeHandler }
 								/>
 							</div>
 							<div className="mb-30">
 								<p className="label">Email</p>
 								<input
+									name="client_email"
 									className="text-field"
-									type="text"
+									type="email"
+									value={ this.state.client_email }
+									onChange={ this.changeHandler }
 								/>
 							</div>
 							<div className="mb-30">
 								<p className="label">Street address</p>
 								<input
+									name="client_street"
 									className="text-field"
 									type="text"
+									value={ this.state.client_street }
+									onChange={ this.changeHandler }
 								/>
 							</div>
 							<div className="flex">
 								<div className="mr-10">
 									<p className="label">City</p>
 									<input
+										name="client_city"
 										className="text-field"
 										type="text"
+										value={ this.state.client_city }
+										onChange={ this.changeHandler }
 									/>
 								</div>
 								<div className="mr-10">
 									<p className="label">Zip Code</p>
 									<input
+										name="client_zip"
 										className="text-field"
 										type="text"
+										value={ this.state.client_zip }
+										onChange={ this.changeHandler }
 									/>
 								</div>
 								<div>
 									<p className="label">Country</p>
 									<input
+										name="client_country"
 										className="text-field"
 										type="text"
+										value={ this.state.client_country }
+										onChange={ this.changeHandler }
 									/>
 								</div>
 							</div>
@@ -188,23 +293,32 @@ export default class InvoiceModal extends Component {
 								<div className="mr-10">
 									<p className="label">Issue date</p>
 									<input
+										name="issued"
 										className="text-field"
 										type="date"
+										value={ this.state.issued }
+										onChange={ this.changeHandler }
 									/>
 								</div>
 								<div>
 									<p className="label">Due date</p>
 									<input
+										name="due"
 										className="text-field"
 										type="date"
+										value={ this.state.due }
+										onChange={ this.changeHandler }
 									/>
 								</div>
 							</div>
 							<div className="mb-30">
 								<p className="label">Description</p>
 								<input
+									name="description"
 									className="text-field"
 									type="text"
+									value={ this.state.description }
+									onChange={ this.changeHandler }
 								/>
 							</div>
 						</div>
@@ -221,13 +335,37 @@ export default class InvoiceModal extends Component {
 					<p className="add-item" onClick={ this.addItem }>+ ADD ITEM</p>
 				</div>
 				<div className="footer">
-					<div className="ArkButton danger">Discard</div>
+					<div className="ArkButton danger"
+						onClick={ this.discardInvoice }>
+						Discard
+					</div>
 					<div>
-						<div className="ArkButton transparent mr-10">Save draft</div>
-						<div className="ArkButton">Create Invoice</div>
+						<div className="ArkButton transparent mr-10"
+							onClick={ () => this.createInvoice("draft") }>
+							Save draft
+						</div>
+						<div className="ArkButton"
+							onClick={ () => this.createInvoice("invoice") }>
+							Create Invoice
+						</div>
 					</div>
 				</div>
 			</div>
 		)
 	}
+}
+
+function getCookie(name) {
+	var cookieValue = null;
+	if (document.cookie && document.cookie !== '') {
+		var cookies = document.cookie.split(';');
+		for (var i = 0; i < cookies.length; i++) {
+			var cookie = jQuery.trim(cookies[i]);
+			if (cookie.substring(0, name.length + 1) === (name + '=')) {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+				break;
+			}
+		}
+	}
+	return cookieValue;
 }
