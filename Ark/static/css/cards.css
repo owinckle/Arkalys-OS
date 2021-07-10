@@ -38,6 +38,28 @@
 	color: var(--sub);
 }
 
+.invoicing .card .table-row .value.status {
+	display: inline;
+	padding: 3px 20px;
+	font-size: 16px;
+	border-radius: 5px;
+}
+
+.invoicing .card .table-row .value.status.pending {
+	background: rgba(var(--rgb-warning), .2);
+	color: var(--warning);
+}
+
+.invoicing .card .table-row .value.status.draft {
+	background: rgba(255, 255, 255, .2);
+	color: #fff;
+}
+
+.invoicing .card .table-row .value.status.paid {
+	background: rgba(var(--rgb-success), .2);
+	color: var(--success);
+}
+
 .card .table-row {
 	display: block;
 	max-width: 100%;

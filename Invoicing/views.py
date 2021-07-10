@@ -16,7 +16,7 @@ def successRequest(data):
 class GetInvoices(APIView):
 	def post(self, request, format=None):
 		user		= request.user
-		invoices	= Invoice.objects.filter(owner=user)
+		invoices	= Invoice.objects.filter(owner=user).order_by('issued')
 
 		invoice_list = []
 		for invoice in invoices:

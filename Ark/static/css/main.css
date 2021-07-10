@@ -16,11 +16,24 @@ body {
 	--third: #636488;
 	--fourth: #2d2b3a;
 	--sub: #b6b6bd;
+	--rgb-primary: 41, 38, 51;
+	--rgb-secondary: 59, 57, 73;
+	--rgb-third: 99, 100, 136;
+	--rgb-fourth: 45, 43, 58;
+	--rgb-sub: 182, 182, 189;
+
+	/* Colors */
 	--highlight: #26a5ff;
 	--danger: #ff4b54;
+	--warning: #ff8f00;
+	--success: #33d69f;
+	--rgb-danger: 255, 75, 84;
+	--rgb-warning: 255, 143, 0;
+	--rgb-success: 54, 214, 159;
+
+	/* Variables */
 	--sidebar-width: 70px;
 	--topbar-height: 60px;
-}
 }
 
 *:focus {

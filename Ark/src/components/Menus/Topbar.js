@@ -31,7 +31,7 @@ export default class Topbar extends Component {
 			<div className="main-topbar">
 				<h2 className="title">{ props.title }</h2>
 				<div>
-					<span className="action-icon material-icons">search</span>
+					<span className="action-icon material-icons" onClick={ this.props.searchToggle }>search</span>
 					<span className="action-icon material-icons">notifications</span>
 					<span className="action-icon material-icons" onClick={ this.toggleFullscreen }>{ fullscreenIcon }</span>
 					<span className="action-icon material-icons">settings</span>

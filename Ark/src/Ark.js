@@ -9,8 +9,8 @@ import {
 	Redirect,
 } from "react-router-dom";
 
-import SessionLocked from "./components/Utils/SessionLocked";
 import ContextMenu from "./components/Utils/ContextMenu";
+import AppSearch from "./components/Utils/AppSearch";
 
 import Sidebar from "./components/Menus/Sidebar";
 import Topbar from "./components/Menus/Topbar";
@@ -24,22 +24,39 @@ export default class Ark extends Component {
 		super(props);
 
 		this.state = {
-			logged: true,
 			activeModule: "home",
 			pins: {
 				contact: false
 			},
 			contextMenuType: "default",
-			contextData: null
+			contextData: null,
+			search: false
 		}
 
 		this.updateState	= this.updateState.bind(this);
 		this.loadView		= this.loadView.bind(this);
 		this.getPins		= this.getPins.bind(this);
+		this.searchToggle	= this.searchToggle.bind(this);
+		this.shortcutsListener	= this.shortcutsListener.bind(this);
 	}
 
 	componentWillMount() {
+		document.addEventListener('keydown', this.shortcutsListener);
 		this.loadView();
+	}
+
+	shortcutsListener(e) {
+		if (e.ctrlKey && e.code === "Space") {
+			this.searchToggle();
+		}
+
+		if (!e.ctrlKey) {
+			if (e.code == "Escape") {
+				if (this.state.search) {
+					this.searchToggle();
+				}
+			}
+		}
 	}
 
 	updateState(target, value) {
@@ -73,60 +90,61 @@ export default class Ark extends Component {
 		);
 	}
 
+	searchToggle() {
+		this.setState({
+			search: this.state.search ? false : true
+		});
+	}
+
 	render() {
-		const logged = this.state.logged;
-
-		if (logged) {
-			return(
-				<div>
-					<Router>
-						<Sidebar
-							updateState={ this.updateState }
-							active={ this.state.activeModule }
-							pins={ this.state.pins }
-							setContextMenu={ this.setContextMenu }
-						/>
-						<Topbar
-							title={ this.state.activeModule }
-						/>
-						<Route exact path="/dashboard/" render={ (props) =>
-							null}
-						/>
-
-						<Route exact path="/dashboard/apps/" render={ (props) =>
-							<Apps
-								updateState={ this.updateState }
-							/>}
-						/>
-
-						<Route exact path="/dashboard/contacts/" render={ (props) =>
-							<Contacts
-								updateState={ this.updateState }
-							/>}
-						/>
-
-						<Route exact path="/dashboard/invoicing/" render={ (props) =>
-							<Invoicing
-								updateState={ this.updateState }
-							/>}
-						/>
-					</Router>
-
-					<ContextMenu
-						type={ this.state.contextMenuType }
+		return(
+			<div>
+				<Router>
+					<Sidebar
 						updateState={ this.updateState }
-						data={ this.state.contextData }
-						reload={ this.loadView }
+						active={ this.state.activeModule }
+						pins={ this.state.pins }
+						setContextMenu={ this.setContextMenu }
 					/>
-				</div>
-			)
-		}
+					<Topbar
+						title={ this.state.activeModule }
+						searchToggle={ this.searchToggle }
+					/>
+					<Route exact path="/dashboard/" render={ (props) =>
+						null}
+					/>
 
-		else {
-			return(
-				<SessionLocked />
-			)
-		}
+					<Route exact path="/dashboard/apps/" render={ (props) =>
+						<Apps
+							updateState={ this.updateState }
+						/>}
+					/>
+
+					<Route exact path="/dashboard/contacts/" render={ (props) =>
+						<Contacts
+							updateState={ this.updateState }
+						/>}
+					/>
+
+					<Route exact path="/dashboard/invoicing/" render={ (props) =>
+						<Invoicing
+							updateState={ this.updateState }
+						/>}
+					/>
+				</Router>
+
+				<AppSearch
+					show={ this.state.search }
+				/>
+
+				<ContextMenu
+					type={ this.state.contextMenuType }
+					updateState={ this.updateState }
+					data={ this.state.contextData }
+					reload={ this.loadView }
+				/>
+			</div>
+		)
 	}
 }
 

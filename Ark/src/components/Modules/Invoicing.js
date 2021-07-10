@@ -80,7 +80,20 @@ export default class Invoicing extends Component {
 						</div>
 						<div>
 							<div className="label">Status</div>
-							<div className="value">{ d.status }</div>
+							{ d.status == "Pending" ?
+								<div className="value status pending">{ d.status }</div>
+								: null
+							}
+
+							{ d.status == "Draft" ?
+								<div className="value status draft">{ d.status }</div>
+								: null
+							}
+
+							{ d.status == "Paid" ?
+								<div className="value status paid">{ d.status }</div>
+								: null
+							}
 						</div>
 					</div>
 				</div>
