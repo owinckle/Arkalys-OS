@@ -7,5 +7,6 @@ urlpatterns = [
     path('dashboard/', include('Ark.urls')),
     # Modules
     path('api/user-settings/', include('UserSettings.urls')),
-    path('api/contacts/', include('Contacts.urls'))
+    path('api/contacts/', include('Contacts.urls')),
+    path('api/invoicing/', include('Invoicing.urls')),
 ]

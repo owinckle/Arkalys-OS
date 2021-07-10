@@ -31,6 +31,7 @@ export default class Sidebar extends Component {
 		const class_home		= active == "home" ? "link active" : "link";
 		const class_apps		= active == "apps" ? "link active": "link";
 		const class_contacts	= active == "contacts" ? "link active" : "link";
+		const class_invoicing	= active == "invoicing" ? "link active" : "link";
 
 		return(
 			<div className="main-sidebar">
@@ -44,12 +45,23 @@ export default class Sidebar extends Component {
 					<Link to="/dashboard/apps/" className={ class_apps } onClick={ () => this.togglePage("apps") }>
 						<span className="icon material-icons">apps</span>
 					</Link>
+					
 					{ pins.contacts || active == "contacts" ?
 						<Link to="/dashboard/contacts/" className={ class_contacts }
 							onClick={ () => this.togglePage("contacts") }
 							onContextMenu={ () => this.setContextMenu("contacts") }
 						>
 							<span className="icon material-icons">people</span>
+						</Link>
+						: null
+					}
+
+					{ pins.invoicing || active == "invoicing" ?
+						<Link to="/dashboard/invoicing/" className={ class_invoicing }
+							onClick={ () => this.togglePage("invoicing") }
+							onContextMenu={ () => this.setContextMenu("invoicing") }
+						>
+							<span className="icon material-icons">receipt</span>
 						</Link>
 						: null
 					}

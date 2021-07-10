@@ -1,0 +1,135 @@
+.modal-right::-webkit-scrollbar {
+	width: 0px;
+}
+
+.modal-right {
+	position: absolute;
+	height: 100%;
+	width: 700px;
+	top: 0px;
+	right: -700px;
+	background-color: var(--fourth);
+	-webkit-box-shadow: -10px 0 20px 5px rgb(0 0 0 / 30%);
+	box-shadow: -10px 0 20px 5px rgb(0 0 0 / 30%);
+	transition: right .3s ease;
+	color: #fff;
+	overflow-y: scroll;
+}
+
+.modal-right.show {
+	right: 0px;
+}
+
+.modal-right.invoice .head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 30px;
+	padding-bottom: 0px;
+	font-size: 18px;
+	position: fixed;
+	width: calc(700px - 60px);
+	background-color: var(--fourth);
+	z-index: 1;
+}
+
+.modal-right.invoice .head .icon {
+	cursor: pointer;
+}
+
+.modal-right.invoice .content {
+	padding: 20px 30px;
+	padding-top: 0px;
+	margin-top: 90px;
+}
+
+.modal-right.invoice .content .label {
+	margin: 5px;
+}
+
+.modal-right.invoice .content h3 {
+	font-weight: 500;
+	color: var(--sub);
+}
+
+.modal-right .content div {
+	width: 100%;
+}
+
+.modal-right.invoice .footer {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 30px;
+	position: fixed;
+	width: calc(700px - 60px);
+	background-color: var(--fourth);
+	z-index: 1;
+	bottom: 0px;
+}
+
+.modal-right.invoice .footer div {
+	display: flex;
+}
+
+.modal-right.invoice .items {
+	margin-bottom: 120px;
+}
+
+.modal-right.invoice .table-headers {
+	padding: 16px 24px;
+	grid-column-gap: 16px;
+	grid-template-columns: 3fr .7fr 1fr 1fr .2fr;
+	grid-template-rows: auto;
+	background-color: var(--secondary);
+	user-select: none;
+	margin-bottom: 16px;
+}
+
+.modal-right.invoice .table-headers .caption {
+	color: var(--sub);
+}
+
+.modal-right.invoice .table-row .item-grid {
+	padding: 16px 24px;
+	grid-column-gap: 16px;
+	grid-row-gap: 0px;
+	grid-template-columns: 3fr .7fr 1fr 1fr .2fr;
+	grid-template-rows: auto;
+	align-items: center;
+}
+
+.modal-right.invoice .table-row .item-grid:first-child {
+	margin-top: -16px;
+}
+
+.modal-right.invoice .add-item {
+	padding: 0px 24px;
+	margin: 0px;
+	color: var(--highlight);
+	cursor: pointer;
+	font-weight: 500;
+	font-size: 15px;
+	display: inline;
+	margin-top: 16px;
+}
+
+.modal-right.invoice .delete-item-icon {
+	cursor: pointer;
+	transition: color .2s ease;
+}
+
+.modal-right.invoice .delete-item-icon:hover {
+	color: var(--danger);
+}
+
+/* Chrome, Safari, Edge, Opera */
+.modal-right.invoice input::-webkit-outer-spin-button,
+.modal-right.invoice input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+.modal-right.invoice input[type=number] {
+	-moz-appearance: textfield;
+}

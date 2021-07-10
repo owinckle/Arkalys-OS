@@ -17,6 +17,7 @@ import Topbar from "./components/Menus/Topbar";
 
 import Apps from "./components/Modules/Apps";
 import Contacts from "./components/Modules/Contacts";
+import Invoicing from "./components/Modules/Invoicing";
 
 export default class Ark extends Component {
 	constructor(props) {
@@ -100,6 +101,12 @@ export default class Ark extends Component {
 
 						<Route exact path="/dashboard/contacts/" render={ (props) =>
 							<Contacts
+								updateState={ this.updateState }
+							/>}
+						/>
+
+						<Route exact path="/dashboard/invoicing/" render={ (props) =>
+							<Invoicing
 								updateState={ this.updateState }
 							/>}
 						/>

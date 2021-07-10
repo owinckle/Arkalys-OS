@@ -20,10 +20,18 @@
 .card .table-headers {
 	padding: 16px 24px;
 	grid-column-gap: 0px;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-template-rows: auto;
 	background-color: var(--secondary);
 	user-select: none;
+}
+
+.contacts .card .table-headers {
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.invoicing .card .table-headers {
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .card .table-headers .caption {
@@ -48,7 +56,6 @@
 
 .card .table-row .more {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
 }
 
@@ -59,6 +66,8 @@
 .card .table-row .more .more-icon {
 	color: var(--sub);
 	cursor: pointer;
+	display: flex;
+	align-items: center;
 }
 
 .card .content {
@@ -70,6 +79,7 @@
 }
 
 .card .app-grid .app {
+	text-decoration: none;
 	background-color: var(--secondary);
 	padding: 16px 24px;
 	display: flex;

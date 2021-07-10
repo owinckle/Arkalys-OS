@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 
+import { Link } from "react-router-dom";
+
 export default class Apps extends Component {
 	constructor(props) {
 		super(props);
@@ -54,13 +56,24 @@ export default class Apps extends Component {
 							</div>
 							<div className="grid-layout _4-grid app-grid">
 								{ installed["contacts"] ?
-									<div className="app">
+									<Link to="/dashboard/contacts/" className="app">
 										<span className="material-icons app-icon">people</span>
 										<div>
 											<p className="app-name">Contacts</p>
 											<p className="app-description">Relations</p>
 										</div>
-									</div>
+									</Link>
+									: null
+								}
+
+								{ installed["invoicing"] ?
+									<Link to="/dashboard/invoicing/" className="app">
+										<span className="material-icons app-icon">receipt</span>
+										<div>
+											<p className="app-name">Invoicing</p>
+											<p className="app-description">Management</p>
+										</div>
+									</Link>
 									: null
 								}
 							</div>

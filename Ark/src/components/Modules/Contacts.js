@@ -72,8 +72,13 @@ export default class Contacts extends Component {
 						</div>
 						<div className="more">
 							<div className="flex">
-								<div>See more</div>
-								<span className="material-icons">keyboard_arrow_down</span>
+								<div>
+									<div className="label">Actions</div>
+									<div className="flex">
+										<div>See more</div>
+										<span className="material-icons">keyboard_arrow_down</span>
+									</div>
+								</div>
 							</div>
 							<span className="material-icons more-icon">more_vert</span>
 						</div>

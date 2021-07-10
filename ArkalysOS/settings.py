@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # Modules
     'UserSettings',
     'Contacts',
+    'Invoicing'
 ]
 
 MIDDLEWARE = [
