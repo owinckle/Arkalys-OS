@@ -137,6 +137,10 @@ body {
 	color: var(--highlight);
 }
 
+.ArkButton.center {
+	display: inline-flex;
+}
+
 .ArkButton.danger {
 	background: var(--danger);
 	background-image: linear-gradient(135deg, #fff 50%, transparent 51%);

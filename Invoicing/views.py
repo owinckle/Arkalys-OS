@@ -99,3 +99,17 @@ class CreateInvoice(APIView):
 			"success": True
 		}
 		return successRequest(data)
+
+class GetInvoice(APIView):
+	def post(self, request, format=None):
+		user	= request.user
+		uuid	= request.data.get("uuid")
+		invoice	= Invoice.objects.filter(uuid=uuid).first()
+		items	= InvoiceItem.objects.filter(invoice=invoice)
+
+		data = {
+			"invoice": InvoiceSerializer(invoice).data,
+			"items": InvoiceItemSerializer(items, many=True).data
+		}
+
+		return successRequest(data)

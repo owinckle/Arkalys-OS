@@ -13,6 +13,8 @@ export default class Invoicing extends Component {
 		this.state = {
 			invoices: null,
 			newInvoice: false,
+			viewInvoice: false,
+			viewInvoiceID: null
 		}
 
 		this.getInvoices	= this.getInvoices.bind(this);
@@ -57,7 +59,12 @@ export default class Invoicing extends Component {
 		let invoice_list = [];
 		if (invoices) {
 			invoice_list = invoices.map((d) =>
-				<div key={ d.uuid } className="table-row hover">
+				<div key={ d.uuid } className="table-row hover"
+					onClick={ () => {
+						this.updateState("viewInvoice", true);
+						this.updateState("viewInvoiceID", d.uuid);
+					}
+				}>
 					<div className="grid-layout _6-grid">
 						<div>
 							<div className="label">No.</div>
@@ -126,7 +133,12 @@ export default class Invoicing extends Component {
 					</div>
 				</div>
 
-				<InvoiceView />
+				<InvoiceView
+					show={ this.state.viewInvoice } 
+					updateState={ this.updateState }
+					reload={ this.getInvoices }
+					id={ this.state.viewInvoiceID }
+				/>
 
 				<InvoiceModal
 					show={ this.state.newInvoice } 

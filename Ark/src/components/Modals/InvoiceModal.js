@@ -127,7 +127,7 @@ export default class InvoiceModal extends Component {
 
 	render() {
 		const show			= this.props.show;
-		const modal_class	= show ? "modal-right invoice show" : "modal-right invoice";
+		const modal_class	= show ? "modal-right invoice thin-scroll show" : "modal-right thin-scroll invoice";
 
 		const items			= this.state.items;
 		let item_list		= [];

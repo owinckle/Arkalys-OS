@@ -1,4 +1,4 @@
-.modal-right::-webkit-scrollbar {
+.thin-scroll::-webkit-scrollbar {
 	width: 0px;
 }
 
@@ -18,6 +18,10 @@
 
 .modal-right.show {
 	right: 0px;
+}
+
+.modal-right.invoice {
+	user-select: none;
 }
 
 .modal-right.invoice .head {
@@ -144,8 +148,14 @@
 	-webkit-box-shadow: 0 0 20px 5px rgb(0 0 0 / 30%);
 	box-shadow: 0 0 20px 5px rgb(0 0 0 / 30%);
 	color: #fff;
+	display: none;
+	max-height: 90%;
+	overflow-y: scroll;
 }
 
+.modal.show {
+	display: block;
+}
 
 .modal.invoice .head {
 	display: flex;
@@ -155,9 +165,103 @@
 	padding-bottom: 0px;
 	font-size: 18px;
 	background-color: var(--fourth);
+	margin-bottom: 20px;
 }
 
 .modal.invoice .client {
 	padding: 20px 30px;
 	padding-top: 0px;
+}
+
+.modal.invoice .table-headers {
+	padding: 16px 24px;
+	grid-column-gap: 16px;
+	grid-template-columns: 3fr .7fr 1fr .2fr;
+	grid-template-rows: auto;
+	background-color: var(--secondary);
+	user-select: none;
+}
+
+.modal.invoice .table-headers .caption {
+	color: var(--sub);
+}
+
+.modal.invoice .table-row {
+	padding: 5px 24px;
+	grid-column-gap: 16px;
+	grid-row-gap: 0px;
+	grid-template-columns: 3fr .7fr 1fr .2fr;
+	grid-template-rows: auto;
+	align-items: center;
+}
+
+.modal.invoice .table-row .label {
+	color: var(--sub);
+	font-size: 12px;
+	margin-bottom: 5px;
+	user-select: none;
+}
+
+
+.modal.invoice .infos {
+	padding: 16px 24px;
+	grid-column-gap: 16px;
+	grid-template-columns: 2.3fr 1.4fr 1fr .2fr;
+}
+
+.modal.invoice .infos .notes,
+.modal.invoice .infos .label {
+	color: var(--sub);
+}
+
+.modal.invoice .actions {
+	padding: 16px 24px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 1px solid var(--sub);
+	user-select: none;
+}
+
+.modal.invoice .actions .download {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	color: var(--highlight);
+}
+
+.modal.invoice .actions .download .icon {
+	margin-right: 5px;
+}
+
+.modal.invoice h3,
+.modal.invoice p {
+	margin: 0;
+}
+
+.modal.invoice .client p {
+	margin-bottom: 5px;
+}
+
+.modal.invoice .client .addr {
+	color: var(--sub);
+}
+
+.modal.invoice h3 {
+	color: var(--sub);
+	margin-bottom: 5px;
+	font-weight: 400;
+}
+
+.modal.invoice .client .name {
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.modal.invoice .client .email {
+	font-weight: 500;
+}
+
+.modal.invoice .invoice-title {
+	font-size: 25px;
 }
