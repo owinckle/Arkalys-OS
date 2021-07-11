@@ -4,6 +4,7 @@ import { render } from "react-dom";
 import { Link } from "react-router-dom";
 
 import InvoiceModal from "../Modals/InvoiceModal";
+import InvoiceView from "../Modals/InvoiceView";
 
 export default class Invoicing extends Component {
 	constructor(props) {
@@ -124,6 +125,8 @@ export default class Invoicing extends Component {
 						</div>
 					</div>
 				</div>
+
+				<InvoiceView />
 
 				<InvoiceModal
 					show={ this.state.newInvoice } 
