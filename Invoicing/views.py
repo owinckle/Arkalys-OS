@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from .models import *
 from .serializers import *
 
+from .utils import *
+
 def successRequest(data):
 	"""
 	Returns a dict and code 200
@@ -113,3 +115,14 @@ class GetInvoice(APIView):
 		}
 
 		return successRequest(data)
+
+def view_invoice(request, uuid):
+	invoice	= Invoice.objects.filter(uuid=uuid).first()
+	items	= InvoiceItem.objects.filter(invoice=invoice)
+	data = {
+		"invoice": invoice,
+		"items": items
+	}
+	pdf	= generate_pdf("invoicing/default_template.html", data)
+	return pdf
+	# return render(request, "invoicing/default_template.html", data)

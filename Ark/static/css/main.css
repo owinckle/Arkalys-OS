@@ -36,6 +36,10 @@ body {
 	--topbar-height: 60px;
 }
 
+a {
+	text-decoration: none;
+}
+
 *:focus {
 	outline: none;
 }

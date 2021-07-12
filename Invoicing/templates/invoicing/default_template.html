@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load invoice_filters %}
+	<title>Invoice</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+		body {
+			background-color: #2d2b3a;
+			font-family: "Exo", sans-serif;
+			font-weight: 400;
+			letter-spacing: 1px;
+			/*margin: 0;*/
+		}
+
+		@page {
+			background-color: #2d2b3a;
+			margin: -2mm;
+			size: A4;
+		}
+
+		.grid-layout {
+			display: flex;
+		}
+
+		.modal {
+			width: 100vw;
+			height: 100vh;
+			background-color: #2d2b3a;
+			color: #fff;
+			display: block;
+		}
+
+		.modal.invoice .head {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			padding: 20px 30px;
+			padding-bottom: 0px;
+			font-size: 18px;
+			background-color: #2d2b3a;
+			margin-bottom: 20px;
+		}
+
+		.modal.invoice .client {
+			padding: 20px 30px;
+			padding-top: 0px;
+		}
+
+		.modal.invoice .table-headers {
+			padding: 16px 24px;
+			background-color: #3b3949;
+			margin-bottom: 10px;
+		}
+
+		.modal.invoice .table-headers .caption {
+			color: #b6b6bd;
+		}
+
+		.caption._1 {
+			width: 60%;
+		}
+
+		.caption._2 {
+			width: 15%;
+		}
+
+		.caption._3 {
+			width: 20%;
+		}
+
+		.caption._4 {
+			width:5%;
+		}
+
+		.modal.invoice .table-row {
+			padding: 5px 24px;
+		}
+
+		.modal.invoice .table-row .label {
+			color: #b6b6bd;
+			font-size: 12px;
+			margin-bottom: 5px;
+			user-select: none;
+		}
+
+		.modal.invoice .infos {
+			padding: 16px 24px;
+			justify-content: space-between;
+		}
+
+		.modal.invoice .infos .notes,
+		.modal.invoice .infos .label {
+			color: #b6b6bd;
+		}
+
+		.infos .notes {
+			width: 60%;
+		}
+
+		.infos .spacer {
+			width: 15%;
+		}
+
+		.infos .label {
+			width: 20%;
+		}
+
+		.infos .price {
+			width: 5%;
+		}
+
+		.modal.invoice h3,
+		.modal.invoice p {
+			margin: 0;
+		}
+
+		.modal.invoice .client p {
+			margin-bottom: 5px;
+		}
+
+		.modal.invoice .client .addr {
+			color: #b6b6bd;
+		}
+
+		.modal.invoice h3 {
+			color: #b6b6bd;
+			margin-bottom: 5px;
+			font-weight: 400;
+		}
+
+		.modal.invoice .client .name {
+			font-size: 18px;
+			font-weight: 500;
+		}
+
+		.modal.invoice .client .email {
+			font-weight: 500;
+		}
+
+		.modal.invoice .invoice-title {
+			font-size: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="modal invoice">
+		<div class="head">
+			<div>
+				<p class="invoice-title">{{ invoice.description }}</p>
+				<p class="invoice-id">#{{ invoice.uuid }}</p>
+			</div>
+			<div class="organization">
+				<p class="addr">{{ invoice.org_street }}</p>
+				<p class="addr">{{ invoice.org_city }}, {{ invoice.org_country }}</p>
+				<p class="addr">{{ invoice.org_zip }}</p>
+			</div>
+		</div>
+		<div class="client">
+			<h3>Invoice for</h3>
+			<p class="name">{{ invoice.client_name }}</p>
+			<p class="email">{{ invoice.client_email }}</p>
+			<p class="addr">{{ invoice.client_street }}</p>
+			<p class="addr">{{ invoice.client_city }}, {{ invoice.client_country }}</p>
+			<p class="addr">{{ invoice.client_zip }}</p>
+		</div>
+		<div class="items">
+			<div class="grid-layout table-headers">
+				<div class="caption _1">Item</div>
+				<div class="caption _2">Qty</div>
+				<div class="caption _3">Price</div>
+				<div class="caption _4">Total</div>
+			</div>
+			
+			{% for item in items %}
+			<div class="grid-layout table-row">
+				<div class="caption _1">
+					<div class="label">Item</div>
+					<div class="value">{{ item.name }}</div>
+				</div>
+				<div class="caption _2">
+					<div class="label">Qty</div>
+					<div class="value">{{ item.quantity }}</div>
+				</div>
+				<div class="caption _3">
+					<div class="label">Price</div>
+					<div class="value">{{ item.price }}€</div>
+				</div>
+				<div class="caption _4">
+					<div class="label">Total</div>
+					<div class="value">{{ item.quantity | multiply:item.price }}€</div>
+				</div>
+			</div>
+			{% endfor %}
+			<!-- { item_list } -->
+		</div>
+		<div class="grid-layout infos">
+			<div class="notes">{{ invoice.notes }}</div>
+			<div class="spacer"></div>
+			<div class="label">Total</div>
+			<div class="price">200€</div>
+		</div>
+	</div>
+</body>
+</html>

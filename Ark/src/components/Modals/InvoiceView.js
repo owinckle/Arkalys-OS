@@ -73,23 +73,23 @@ export default class InvoiceView extends Component {
 		if (items) {
 			item_list	= items.map((d) =>
 				<div key={ d.name } className="grid-layout table-row">
-						<div>
-							<div className="label">Item</div>
-							<div className="value">{ d.name }</div>
-						</div>
-						<div>
-							<div className="label">Qty</div>
-							<div className="value">{ d.quantity}</div>
-						</div>
-						<div>
-							<div className="label">Price</div>
-							<div className="value">{ d.price }€</div>
-						</div>
-						<div>
-							<div className="label">Total</div>
-							<div className="value">{ d.price * d.quantity }€</div>
-						</div>
+					<div>
+						<div className="label">Item</div>
+						<div className="value">{ d.name }</div>
 					</div>
+					<div>
+						<div className="label">Qty</div>
+						<div className="value">{ d.quantity}</div>
+					</div>
+					<div>
+						<div className="label">Price</div>
+						<div className="value">{ d.price }€</div>
+					</div>
+					<div>
+						<div className="label">Total</div>
+						<div className="value">{ d.price * d.quantity }€</div>
+					</div>
+				</div>
 			);
 		}
 
@@ -131,10 +131,12 @@ export default class InvoiceView extends Component {
 					<div className="price">200€</div>
 				</div>
 				<div className="actions">
-					<div className="download">
-						<span className="material-icons icon">download</span>
-						<p>Download Invoice</p>
-					</div>
+					<a href={ "/api/invoicing/view-invoice/" + this.props.id } target="_blank">
+						<div className="download">
+							<span className="material-icons icon">download</span>
+							<p>Download Invoice</p>
+						</div>
+					</a>
 					<div className="ArkButton danger center"
 						onClick={ this.close }>
 						Close
