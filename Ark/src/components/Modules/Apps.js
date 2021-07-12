@@ -76,6 +76,17 @@ export default class Apps extends Component {
 									</Link>
 									: null
 								}
+
+								{ installed["calendar"] ?
+									<Link to="/dashboard/calendar/" className="app">
+										<span className="material-icons app-icon">today</span>
+										<div>
+											<p className="app-name">Calendar</p>
+											<p className="app-description">Management</p>
+										</div>
+									</Link>
+									: null
+								}
 							</div>
 						</div>
 					</div>

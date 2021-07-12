@@ -29,7 +29,6 @@ export default class ContextMenu extends Component {
 	}
 
 	handleContextMenu(e) {
-		e.preventDefault();
 		this.setState({
 			xPos: e.pageX + "px",
 			yPos: e.pageY + "px",
@@ -61,17 +60,9 @@ export default class ContextMenu extends Component {
 		const type	= this.props.type;
 		const data	= this.props.data;
 
-		if (show) {
+		if (show && type != "default") {
 			return (
 				<ul className="context-menu" style={{ top: yPos, left: xPos}}>
-					{ type == "default" ?
-						<li>
-							<div>Copy</div>
-							<div>CTRL+C</div>
-						</li>
-						: null
-					}
-
 					{ type == "sidebar" ?
 						<li onClick={ this.unpinModule }>{ data.pinned ? "Unpin" : "Pin"} { data.module } to sidebar</li>
 						: null

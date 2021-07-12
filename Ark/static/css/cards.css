@@ -97,6 +97,11 @@
 	cursor: pointer;
 	display: flex;
 	align-items: center;
+	transition: color .2s ease;
+}
+
+.card .table-row .more .more-icon:hover {
+	color: var(--highlight);
 }
 
 .card .content {
@@ -119,6 +124,7 @@
 	-webkit-box-shadow: 0 0 20px 5px rgb(0 0 0 / 30%);
 	box-shadow: 0 0 20px 5px rgb(0 0 0 / 30%);
 	cursor: pointer;
+	user-select: none;
 }
 
 .card .app-grid .app .app-icon {
@@ -137,4 +143,118 @@
 
 .card .app-grid .app .app-description {
 	color: var(--sub);
+}
+
+.calendar .card .head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: #fff;
+}
+
+.calendar .card .head .arrows {
+	color: var(--sub);
+	cursor: pointer;
+	border: 1px solid var(--sub);
+	border-radius: 10px;
+	transition: color .2s ease, border .2s ease;
+	padding: 7px;
+}
+
+.calendar .card .head .arrows:hover {
+	color: var(--highlight);
+	border: 1px solid var(--highlight);
+}
+
+.calendar .card .head p {
+	font-size: 18px;
+	margin: 0;
+	font-weight: 500;
+}
+
+.calendar .card .days-head {
+	text-align: center;
+	color: var(--sub);
+}
+
+.calendar .card .days {
+	text-align: center;
+	color: #fff;
+	padding-bottom: 0px;
+	cursor: pointer;
+}
+
+.calendar .card .days .outer {
+	color: var(--sub);
+}
+
+.calendar .card .days div {
+	padding: 16px;
+}
+
+.calendar .card .days div:hover {
+	color: var(--highlight);
+}
+
+.calendar .card .days .today {
+	color: var(--highlight);
+}
+
+.calendar .card.events {
+	margin-top: 24px;
+}
+
+.calendar .events .event {
+	padding: 16px 24px;
+	grid-column-gap: 0px;
+	grid-template-columns: 1.5fr 1fr 1fr 1fr 0fr;
+	grid-template-rows: auto;
+	color: #fff;
+	align-items: center;
+}
+
+.calendar .events .event .user {
+	display: flex;
+	align-items: center;
+}
+
+.calendar .events .event .user p {
+	margin: 0;
+}
+
+.calendar .events .event .user .name {
+	margin-bottom: 5px;
+}
+
+.calendar .events .event .user .email {
+	color: var(--sub);
+	font-size: 14px;
+}
+
+.calendar .events .event .user img {
+	border-radius: 50%;
+	margin-right: 10px;
+	height: 50px;
+}
+
+.calendar .events .event .label {
+	width: fit-content;
+	background: var(--highlight);
+	padding: 5px 15px;
+	border-radius: 5px;
+	font-weight: 500;
+}
+
+.calendar .events .event .more {
+	cursor: pointer;
+	transition: color .2s ease;
+}
+
+.calendar .events .event .more:hover {
+	color: var(--highlight);
+}
+
+.calendar .calendar-grid,
+.calendar .events {
+	user-select: none;
 }

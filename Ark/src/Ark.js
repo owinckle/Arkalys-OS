@@ -18,6 +18,7 @@ import Topbar from "./components/Menus/Topbar";
 import Apps from "./components/Modules/Apps";
 import Contacts from "./components/Modules/Contacts";
 import Invoicing from "./components/Modules/Invoicing";
+import Calendar from "./components/Modules/Calendar";
 
 export default class Ark extends Component {
 	constructor(props) {
@@ -128,6 +129,12 @@ export default class Ark extends Component {
 
 					<Route exact path="/dashboard/invoicing/" render={ (props) =>
 						<Invoicing
+							updateState={ this.updateState }
+						/>}
+					/>
+
+					<Route exact path="/dashboard/calendar/" render={ (props) =>
+						<Calendar
 							updateState={ this.updateState }
 						/>}
 					/>

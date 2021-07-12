@@ -15,7 +15,8 @@ export default class Sidebar extends Component {
 		this.props.updateState("activeModule", module);
 	}
 
-	setContextMenu(module) {
+	setContextMenu(e, module) {
+		e.preventDefault();
 		this.props.updateState("contextMenuType", "sidebar");
 		this.props.updateState("contextData", {
 			"module": module,
@@ -32,6 +33,7 @@ export default class Sidebar extends Component {
 		const class_apps		= active == "apps" ? "link active": "link";
 		const class_contacts	= active == "contacts" ? "link active" : "link";
 		const class_invoicing	= active == "invoicing" ? "link active" : "link";
+		const class_calendar	= active == "calendar" ? "link active" : "link";
 
 		return(
 			<div className="main-sidebar">
@@ -49,7 +51,7 @@ export default class Sidebar extends Component {
 					{ pins.contacts || active == "contacts" ?
 						<Link to="/dashboard/contacts/" className={ class_contacts }
 							onClick={ () => this.togglePage("contacts") }
-							onContextMenu={ () => this.setContextMenu("contacts") }
+							onContextMenu={ (e) => this.setContextMenu(e, "contacts") }
 						>
 							<span className="icon material-icons">people</span>
 						</Link>
@@ -59,9 +61,19 @@ export default class Sidebar extends Component {
 					{ pins.invoicing || active == "invoicing" ?
 						<Link to="/dashboard/invoicing/" className={ class_invoicing }
 							onClick={ () => this.togglePage("invoicing") }
-							onContextMenu={ () => this.setContextMenu("invoicing") }
+							onContextMenu={ (e) => this.setContextMenu(e, "invoicing") }
 						>
 							<span className="icon material-icons">receipt</span>
+						</Link>
+						: null
+					}
+
+					{ pins.calendar || active == "calendar" ?
+						<Link to="/dashboard/calendar/" className={ class_calendar }
+							onClick={ () => this.togglePage("calendar") }
+							onContextMenu={ (e) => this.setContextMenu(e, "calendar") }
+						>
+							<span className="icon material-icons">today</span>
 						</Link>
 						: null
 					}
