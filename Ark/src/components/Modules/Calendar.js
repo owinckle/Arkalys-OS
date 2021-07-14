@@ -12,18 +12,23 @@ export default class Calendar extends Component {
 		this.state = {
 			dateObject: moment(),
 			month: 0,
-			newEvent: true
+			newEvent: false
 		}
 
-		this.updateState	= this.updateState.bind(this);
-		this.mapCalendar	= this.mapCalendar.bind(this);
-		this.setMonth		= this.setMonth.bind(this);
+		this.getEvents			= this.getEvents.bind(this);
+		this.getEventByDate		= this.getEventByDate.bind(this);
+		this.updateState		= this.updateState.bind(this);
+		this.mapCalendar		= this.mapCalendar.bind(this);
+		this.setMonth			= this.setMonth.bind(this);
 	}
 
 	componentWillMount() {
 		this.props.updateState("activeModule", "calendar");
+		this.getEvents();
+
 		let dateObject	= this.state.dateObject;
 		const date		= moment(dateObject);
+
 		const month		= date.format("M");
 		const day		= date.format("D");
 		const year		= date.format("Y");
@@ -31,6 +36,8 @@ export default class Calendar extends Component {
 		newDateObj 		= moment(newDateObj);
 		newDateObj.set("month", month - 1);
 		newDateObj.set("date", day);
+
+		this.getEventByDate(day, month, year);
 
 		this.setState({
 			dateObject: newDateObj,
@@ -40,6 +47,52 @@ export default class Calendar extends Component {
 			originalYear: year
 		});
 	}
+
+	getEvents() {
+		const requestOptions = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"X-CSRFToken": getCookie('csrftoken')
+			}
+		}
+
+		fetch("/api/calendar/get", requestOptions)
+			.then((response) => response.json())
+			.then((data) =>
+				this.setState({
+					events: data.events
+				})
+		);
+	}
+
+	getEventByDate(day, month, year) {
+		const date = moment({
+			day: day,
+			month: month,
+			year: year
+		})
+
+		const requestOptions = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"X-CSRFToken": getCookie('csrftoken')
+			},
+			body: JSON.stringify({
+				date: date.toDate().getTime() / 1000
+			})
+		}
+
+		fetch("/api/calendar/get/by-date", requestOptions)
+			.then((response) => response.json())
+			.then((data) =>
+				this.setState({
+					searched_events: data.events
+				})
+		);
+	}
+
 
 	updateState(target, value) {
 		this.setState({
@@ -120,6 +173,44 @@ export default class Calendar extends Component {
 
 	render() {
 		const calendarMap	= this.mapCalendar();
+		const events		= this.state.events;
+		const searched_events	= this.state.searched_events;
+
+		let event_list = [];
+		if (events) {
+			event_list = events.map((d) =>
+				<div key={ d.uuid } className="grid-layout event">
+					<div className="user">
+						<img className="avatar" src="https://i.gyazo.com/baaffd0f3dafe80368449b91a4ae6327.jpg" />
+						<div>
+							<p className="name">{ d.with }</p>
+							<p className="email">email@domain.com</p>
+						</div>
+					</div>
+					<div className="label">{ d.title }</div>
+					<div className="time">{ d.time }</div>
+					<div className="date">{ d.date }</div>
+					<span className="material-icons more">more_horiz</span>
+				</div>
+			);
+		}
+
+		let searched_events_list = [];
+		if (searched_events) {
+			searched_events_list = searched_events.map((d) =>
+				<div key={ d.uuid } className="grid-layout event">
+					<div className="user">
+						<img className="avatar" src="https://i.gyazo.com/baaffd0f3dafe80368449b91a4ae6327.jpg" />
+						<div>
+							<p className="name">Somebody</p>
+						</div>
+					</div>
+					<div className="label">{ d.title }</div>
+					<div className="time">{ d.time }</div>
+					<span className="material-icons more">more_vert</span>
+				</div>
+			);
+		}
 
 		return(
 			<div className="module calendar">
@@ -154,46 +245,11 @@ export default class Calendar extends Component {
 								add
 							</span>
 						</div>
-						<div className="grid-layout event">
-							<div className="user">
-								<img className="avatar" src="https://i.gyazo.com/baaffd0f3dafe80368449b91a4ae6327.jpg" />
-								<div>
-									<p className="name">Ocean Winckler</p>
-								</div>
-							</div>
-							<div className="label">Lunch</div>
-							<div className="time">1:30pm</div>
-							<span class="material-icons more">more_vert</span>
-						</div>
+						{ searched_events_list }
 					</div>
 				</div>
 				<div className="card events">
-					<div className="grid-layout event">
-						<div className="user">
-							<img className="avatar" src="https://i.gyazo.com/baaffd0f3dafe80368449b91a4ae6327.jpg" />
-							<div>
-								<p className="name">Ocean Winckler</p>
-								<p className="email">oceanwinckler.rem@gmail.com</p>
-							</div>
-						</div>
-						<div className="label">Lunch</div>
-						<div className="time">1:30pm</div>
-						<div className="date">February 21, 2021</div>
-						<span class="material-icons more">more_horiz</span>
-					</div>
-					<div className="grid-layout event">
-						<div className="user">
-							<img className="avatar" src="https://i.gyazo.com/baaffd0f3dafe80368449b91a4ae6327.jpg" />
-							<div>
-								<p className="name">Ocean Winckler</p>
-								<p className="email">oceanwinckler.rem@gmail.com</p>
-							</div>
-						</div>
-						<div className="label">Lunch</div>
-						<div className="time">1:30pm</div>
-						<div className="date">February 21, 2021</div>
-						<span class="material-icons more">more_horiz</span>
-					</div>
+					{ event_list }
 				</div>
 				<CalendarEventCreate
 					show={ this.state.newEvent }

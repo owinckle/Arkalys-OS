@@ -38,10 +38,7 @@ export default class Invoicing extends Component {
 			headers: {
 				"Content-Type": "application/json",
 				"X-CSRFToken": getCookie('csrftoken')
-			},
-			body: JSON.stringify({
-				action: "get"
-			})
+			}
 		}
 
 		fetch("/api/invoicing/get", requestOptions)

@@ -3,5 +3,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-	# path("pins", views.Pins.as_view()),
+	path("get", views.GetEvents.as_view()),
+	path("get/by-date", views.GetEventByDate.as_view()),
 ]

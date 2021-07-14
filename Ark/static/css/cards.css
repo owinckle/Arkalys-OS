@@ -262,11 +262,10 @@
 
 .calendar .insight .event {
 	padding: 16px 24px;
-	grid-column-gap: 16px;
-	grid-template-columns: 1fr 0fr 0fr 0fr;
-	grid-template-rows: auto;
 	color: #fff;
 	align-items: center;
+	display: flex;
+	justify-content: space-between;
 }
 
 .calendar .insight .event .user {
