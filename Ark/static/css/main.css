@@ -27,6 +27,7 @@ body {
 	--danger: #ff4b54;
 	--warning: #ff8f00;
 	--success: #33d69f;
+	--rgb-highlight: 38, 165, 255;
 	--rgb-danger: 255, 75, 84;
 	--rgb-warning: 255, 143, 0;
 	--rgb-success: 54, 214, 159;
@@ -193,6 +194,41 @@ a {
 	border: none;
 	background-color: var(--third);
 	color: #fff;
+	letter-spacing: 1px;
+}
+
+.text-field.slim {
+	border-radius: 0px;
+	background: transparent;
+	border-bottom: 1px solid var(--third);
+	transition: border-bottom .3s ease;
+	padding: 10px 0;
+}
+
+.text-field.slim:focus {
+	border-bottom: 1px solid var(--highlight);
+}
+
+.select-field {
+	border: none;
+	background: var(--third);
+	height: 35px;
+	color: #fff;
+	border-radius: 6px;
+	font-size: 16px;
+	letter-spacing: 1px;
+	box-shadow: 0 4px 4px rgba(0,0,0,.4);
+	cursor: pointer;
+	padding: 10px;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+select {
+	-moz-appearance: none;
+	-webkit-appearance: none;
 }
 
 .mt-10 {
@@ -209,4 +245,9 @@ a {
 
 .mr-10 {
 	margin-right: 10px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	filter: invert(1);
+	cursor: pointer;
 }

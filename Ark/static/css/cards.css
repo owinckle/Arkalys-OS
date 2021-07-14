@@ -206,7 +206,7 @@
 
 .calendar .events .event {
 	padding: 16px 24px;
-	grid-column-gap: 0px;
+	grid-column-gap: 16px;
 	grid-template-columns: 1.5fr 1fr 1fr 1fr 0fr;
 	grid-template-rows: auto;
 	color: #fff;
@@ -255,6 +255,66 @@
 }
 
 .calendar .calendar-grid,
-.calendar .events {
+.calendar .events,
+.calendar .insight {
 	user-select: none;
+}
+
+.calendar .insight .event {
+	padding: 16px 24px;
+	grid-column-gap: 16px;
+	grid-template-columns: 1fr 0fr 0fr 0fr;
+	grid-template-rows: auto;
+	color: #fff;
+	align-items: center;
+}
+
+.calendar .insight .event .user {
+	display: flex;
+	align-items: center;
+}
+
+.calendar .insight .event .user p {
+	margin: 0;
+}
+
+.calendar .insight .event .user .name {
+	margin-bottom: 5px;
+}
+
+.calendar .insight .event .user .email {
+	color: var(--sub);
+	font-size: 14px;
+}
+
+.calendar .insight .event .user img {
+	border-radius: 50%;
+	margin-right: 10px;
+	height: 50px;
+}
+
+.calendar .insight .event .label {
+	width: fit-content;
+	background: var(--highlight);
+	padding: 5px 15px;
+	border-radius: 5px;
+	font-weight: 500;
+}
+
+.calendar .insight .event .more {
+	cursor: pointer;
+	transition: color .2s ease;
+}
+
+.calendar .insight .event .more:hover {
+	color: var(--highlight);
+}
+
+.calendar .add-event-btn {
+	transition: color .2s ease;
+	cursor: pointer;
+}
+
+.calendar .add-event-btn:hover {
+	color: var(--highlight);
 }

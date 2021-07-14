@@ -3,6 +3,8 @@ import { render } from "react-dom";
 
 import moment from "moment";
 
+import CalendarEventCreate from "../modals/CalendarEventCreate";
+
 export default class Calendar extends Component {
 	constructor(props) {
 		super(props);
@@ -10,8 +12,10 @@ export default class Calendar extends Component {
 		this.state = {
 			dateObject: moment(),
 			month: 0,
+			newEvent: true
 		}
 
+		this.updateState	= this.updateState.bind(this);
 		this.mapCalendar	= this.mapCalendar.bind(this);
 		this.setMonth		= this.setMonth.bind(this);
 	}
@@ -34,6 +38,12 @@ export default class Calendar extends Component {
 			year: year,
 			originalMonth: month,
 			originalYear: year
+		});
+	}
+
+	updateState(target, value) {
+		this.setState({
+			[target]: value
 		});
 	}
 
@@ -135,7 +145,26 @@ export default class Calendar extends Component {
 							{ calendarMap.next_month }
 						</div>
 					</div>
-					<div className="card menu">
+					<div className="card insight">
+						<div className="head">
+							<p>Today</p>
+							<span
+								className="material-icons add-event-btn"
+								onClick={ () => this.updateState("newEvent", true) }>
+								add
+							</span>
+						</div>
+						<div className="grid-layout event">
+							<div className="user">
+								<img className="avatar" src="https://i.gyazo.com/baaffd0f3dafe80368449b91a4ae6327.jpg" />
+								<div>
+									<p className="name">Ocean Winckler</p>
+								</div>
+							</div>
+							<div className="label">Lunch</div>
+							<div className="time">1:30pm</div>
+							<span class="material-icons more">more_vert</span>
+						</div>
 					</div>
 				</div>
 				<div className="card events">
@@ -166,6 +195,10 @@ export default class Calendar extends Component {
 						<span class="material-icons more">more_horiz</span>
 					</div>
 				</div>
+				<CalendarEventCreate
+					show={ this.state.newEvent }
+					updateState={ this.updateState }
+				/>
 			</div>
 		)
 	}
