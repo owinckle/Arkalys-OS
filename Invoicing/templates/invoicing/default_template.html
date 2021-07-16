@@ -11,13 +11,13 @@
 			font-family: "Exo", sans-serif;
 			font-weight: 400;
 			letter-spacing: 1px;
-			/*margin: 0;*/
+			margin: 0;
 		}
 
 		@page {
 			background-color: #2d2b3a;
-			margin: -2mm;
-			size: A4;
+			/*margin: -2mm;*/
+			/*size: A4;*/
 		}
 
 		.grid-layout {
@@ -142,6 +142,7 @@
 		.modal.invoice .invoice-title {
 			font-size: 25px;
 		}
+
 	</style>
 </head>
 <body>
@@ -199,7 +200,7 @@
 			<div class="notes">{{ invoice.notes }}</div>
 			<div class="spacer"></div>
 			<div class="label">Total</div>
-			<div class="price">200€</div>
+			<div class="price">{{ total_price }}€</div>
 		</div>
 	</div>
 </body>

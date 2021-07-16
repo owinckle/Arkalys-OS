@@ -91,6 +91,7 @@ class CreateInvoice(APIView):
 		for item in items:
 			new_item = InvoiceItem(
 				invoice=new_invoice,
+				name=item["name"],
 				quantity=item["qty"],
 				price=item["price"]
 			)
@@ -109,9 +110,14 @@ class GetInvoice(APIView):
 		invoice	= Invoice.objects.filter(uuid=uuid).first()
 		items	= InvoiceItem.objects.filter(invoice=invoice)
 
+		total_price = 0
+		for item in items:
+			total_price += item.price * item.quantity
+
 		data = {
 			"invoice": InvoiceSerializer(invoice).data,
-			"items": InvoiceItemSerializer(items, many=True).data
+			"items": InvoiceItemSerializer(items, many=True).data,
+			"total_price": total_price
 		}
 
 		return successRequest(data)
@@ -119,9 +125,14 @@ class GetInvoice(APIView):
 def view_invoice(request, uuid):
 	invoice	= Invoice.objects.filter(uuid=uuid).first()
 	items	= InvoiceItem.objects.filter(invoice=invoice)
+
+	total_price = 0
+	for item in items:
+		total_price += item.price * item.quantity
 	data = {
 		"invoice": invoice,
-		"items": items
+		"items": items,
+		"total_price": total_price
 	}
 	pdf	= generate_pdf("invoicing/default_template.html", data)
 	return pdf

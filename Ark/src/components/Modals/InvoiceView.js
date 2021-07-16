@@ -47,7 +47,8 @@ export default class InvoiceView extends Component {
 				this.setState({
 					loaded: true,
 					invoice: data.invoice,
-					items: data.items
+					items: data.items,
+					total_price: data.total_price
 				})
 		);
 	}
@@ -67,8 +68,9 @@ export default class InvoiceView extends Component {
 			this.loadInvoice(this.props.id);
 		}
 
-		const invoice	= this.state.invoice;
-		const items		= this.state.items;
+		const invoice		= this.state.invoice;
+		const items			= this.state.items;
+		const total_price	= this.state.total_price;
 		let item_list	= [];
 		if (items) {
 			item_list	= items.map((d) =>
@@ -128,7 +130,7 @@ export default class InvoiceView extends Component {
 					<div className="notes">{ invoice.notes }</div>
 					<div></div>
 					<div className="label">Total</div>
-					<div className="price">200€</div>
+					<div className="price">{ total_price }€</div>
 				</div>
 				<div className="actions">
 					<a href={ "/api/invoicing/view-invoice/" + this.props.id } target="_blank">
