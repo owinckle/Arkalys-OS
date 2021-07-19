@@ -181,7 +181,7 @@
 .modal.invoice .table-headers {
 	padding: 16px 24px;
 	grid-column-gap: 16px;
-	grid-template-columns: 3fr .7fr 1fr .2fr;
+	grid-template-columns: 3fr 1fr 1fr 1fr;
 	grid-template-rows: auto;
 	background-color: var(--secondary);
 	user-select: none;
@@ -195,7 +195,7 @@
 	padding: 5px 24px;
 	grid-column-gap: 16px;
 	grid-row-gap: 0px;
-	grid-template-columns: 3fr .7fr 1fr .2fr;
+	grid-template-columns: 3fr 1fr 1fr 1fr;
 	grid-template-rows: auto;
 	align-items: center;
 }
@@ -211,7 +211,7 @@
 .modal.invoice .infos {
 	padding: 16px 24px;
 	grid-column-gap: 16px;
-	grid-template-columns: 2.3fr 1.4fr 1fr .2fr;
+	grid-template-columns: 3fr 1fr 1fr 1fr;
 }
 
 .modal.invoice .infos .notes,

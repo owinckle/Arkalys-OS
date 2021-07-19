@@ -85,7 +85,7 @@ export default class InvoiceView extends Component {
 					</div>
 					<div>
 						<div className="label">Price</div>
-						<div className="value">{ d.price }€</div>
+						<div className="value">{ d.price  * 1}€</div>
 					</div>
 					<div>
 						<div className="label">Total</div>
