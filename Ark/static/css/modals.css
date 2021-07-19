@@ -355,3 +355,9 @@
 	z-index: 1;
 	bottom: 0px;
 }
+
+.modal.invoice .action-buttons {
+	grid-column-gap: 16px;
+	grid-template-columns: 0fr 0fr 1fr;
+}
+

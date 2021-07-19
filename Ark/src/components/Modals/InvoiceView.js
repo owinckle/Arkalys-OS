@@ -22,11 +22,14 @@ export default class InvoiceView extends Component {
 				issued: "",
 				due: "",
 				description: ""
-			}
+			},
+			draft: false,
+			paid: false
 		}
 
-		this.loadInvoice	= this.loadInvoice.bind(this);
-		this.close			= this.close.bind(this);
+		this.loadInvoice			= this.loadInvoice.bind(this);
+		this.close					= this.close.bind(this);
+		this.stateSwitch			= this.stateSwitch.bind(this);
 	}
 
 	loadInvoice(uuid) {
@@ -58,6 +61,12 @@ export default class InvoiceView extends Component {
 			loaded: false
 		});
 		this.props.updateState("viewInvoice", false);
+	}
+
+	stateSwitch(switch_name) {
+		this.setState({
+			[switch_name]: this.state.[switch_name] ? false : true
+		});
 	}
 
 	render() {
@@ -94,6 +103,9 @@ export default class InvoiceView extends Component {
 				</div>
 			);
 		}
+
+		const draft_class	= this.state.draft ? "checkbox checked" : "checkbox";
+		const paid_class	= this.state.paid ? "checkbox checked" : "checkbox";
 
 		return(
 			<div className={ modal_class }>
@@ -139,9 +151,19 @@ export default class InvoiceView extends Component {
 							<p>Download Invoice</p>
 						</div>
 					</a>
-					<div className="ArkButton danger center"
-						onClick={ this.close }>
-						Close
+					<div className="grid-layout action-buttons">
+						<div className="switch-field">
+							<div className={ draft_class } onClick={ () => this.stateSwitch("draft") }></div>
+							<span className="checkbox-label">Draft</span>
+						</div>
+						<div className="switch-field">
+							<div className={ paid_class } onClick={ () => this.stateSwitch("paid") }></div>
+							<span className="checkbox-label">Paid</span>
+						</div>
+						<div className="ArkButton danger center"
+							onClick={ this.close }>
+							Close
+						</div>
 					</div>
 				</div>
 			</div>

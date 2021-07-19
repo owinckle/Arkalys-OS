@@ -169,6 +169,21 @@ a {
 	background-position: 0px 0px;
 }
 
+.ArkButton.warning {
+	background: var(--warning);
+	background-image: linear-gradient(135deg, #fff 50%, transparent 51%);
+	background-size: 100px 100px;
+	background-position: -50px -50px;
+	background-repeat: no-repeat;
+	color: #fff;
+}
+
+.ArkButton.warning:hover {
+	color: var(--warning);
+	background-size: 200% 200%;
+	background-position: 0px 0px;
+}
+
 .ArkButton.transparent {
 	background: transparent;
 	background-image: linear-gradient(135deg, #fff 50%, transparent 51%);
@@ -250,4 +265,46 @@ select {
 input[type="date"]::-webkit-calendar-picker-indicator {
 	filter: invert(1);
 	cursor: pointer;
+}
+
+.switch-field {
+	display: flex;
+	margin-bottom: 0px;
+	padding-left: 0px;
+	align-items: center;
+}
+
+.switch-field .checkbox {
+	width: 36px;
+	height: 20px;
+	margin-top: 0px;
+	margin-right: 8px;
+	margin-left: 0px;
+	border: none;
+	border-radius: 10px;
+	background-color: var(--sub);
+	background-image: url(../img/utils/switch.svg);
+	background-position: 5px 50%;
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
+	transition: background-position .2s ease, background-color .2s ease;
+	cursor: pointer;
+	float: left;
+	line-height: normal;
+}
+
+.switch-field .checkbox-label {
+	color: var(--sub);
+	font-size: 14px;
+	font-weight: 400;
+	display: inline-block;
+	cursor: pointer;
+	margin-bottom: 0px;
+}
+
+.switch-field .checkbox.checked {
+	background-color: var(--highlight);
+	background-image: url(../img/utils/switch.svg);
+	background-position: 19px 50%;
+	background-size: 12px 12px;
 }

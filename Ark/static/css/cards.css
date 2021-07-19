@@ -175,6 +175,7 @@
 .calendar .card .days-head {
 	text-align: center;
 	color: var(--sub);
+	padding-bottom: 0px;
 }
 
 .calendar .card .days {
